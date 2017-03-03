@@ -1,7 +1,18 @@
 {
   "default": ["nag"],
+  "deploy": [
+    "shell:git-is-clean",
+    "shell:git-checkout-master",
+    "build",
+    "shell:git-push-master",
+    "shell:deploy-prepare",
+    "build",
+    "shell:deploy-publish"
+  ],
   "build": ["webpack:build"],
-  "serve": ["webpack-dev-server:start"],
+  "server": ["webpack-dev-server:start"],
+  "serve": ["server"],
+  "s": ["server"],
   "nag": ["jshint", "jsonlint:all", "jscs:status"],
   "reformat": ["jscs:write"],
   "test": ["build", "jasmine"]
